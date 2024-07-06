@@ -9,6 +9,7 @@ NOTE: if your device is not flashed correctly or you need to reflash, etc. you c
 As I get feedback I will introduce new features such as interactive install if you want to skip the autoconfigure, etc.
 
 SQUAWK SQUAWK
+This is the initial version, so there may be some bugs! let me know if there are.
 
 ### Installation
 1) Download and Extract this repository to where you want to install it
