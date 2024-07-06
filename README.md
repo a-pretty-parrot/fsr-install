@@ -64,3 +64,13 @@ No conda env active, defaulting to base
 ### To Run
 To run the webui after installation, a shortcut will be placed in the installation directory.
 Optionally you can run it from the installation directory (windows) with `python\python.exe webui.py --run`
+```
+PS C:\squawk-fsr-install> .\python\python.exe .\webui.py -r
+No conda env active, defaulting to base
+2024-07-06 06:27:01,268 INFO main: starting server on http://localhost:5000
+2024-07-06 06:27:01,269 INFO wrapper: bringing up test webui server...
+2024-07-06 06:27:02,360 INFO wrapper: test webui is accessible
+2024-07-06 06:27:02,365 INFO test_webui: all webui tests passed
+2024-07-06 06:27:02,365 INFO main: server running on http://localhost:5000
+2024-07-06 06:27:02,366 INFO main: use your browser to navigate to the server, and press CTRL+C to stop it
+```
