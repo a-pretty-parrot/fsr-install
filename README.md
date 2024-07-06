@@ -11,7 +11,8 @@ The actual teejusb firmware can be found here https://github.com/teejusb/fsr/
 SQUAWK SQUAWK
 
 ### Notes
-- As I get feedback I will introduce new features such as interactive install if you want to skip the autoconfigure, etc.
+- As I get feedback I will introduce new features such as interactive install if you want to skip the autoconfigure, etc.\
+- Right now it only does windows, linux/macos will come once this is stable - and linux should have no issue installing original :>
 - Known Issues:
   - using --port does not currently work. you only need this if you want to run 2 pads together (coming)
 This is the initial version, so there may be some bugs! let me know if there are.
