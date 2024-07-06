@@ -6,10 +6,16 @@ This will install the webui for teejusb dance pad firmware, with no need to inst
 During installation it will automatically detect which serial port (`COM#`) your teejusb is connected to and configure the server for it.
 NOTE: if your device is not flashed correctly or you need to reflash, etc. you can simply run `install.bat` again and it will update the configuration.
 
-As I get feedback I will introduce new features such as interactive install if you want to skip the autoconfigure, etc.
+The actual teejusb firmware can be found here https://github.com/teejusb/fsr/
 
 SQUAWK SQUAWK
+
+### Notes
+- As I get feedback I will introduce new features such as interactive install if you want to skip the autoconfigure, etc.
+- Known Issues:
+  - using --port does not currently work. you only need this if you want to run 2 pads together (coming)
 This is the initial version, so there may be some bugs! let me know if there are.
+
 
 ### Installation
 1) Download and Extract this repository to where you want to install it
