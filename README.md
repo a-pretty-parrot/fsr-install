@@ -83,7 +83,7 @@ At line:1 char:3
     + FullyQualifiedErrorId : UnauthorizedAccess
 ```
 1) Press `CTRL+C` a few times to stop the installation.
-2) enter this command into your terminal where you are running the installation: `Set-ExecutionPolicy RemoteSigned -Scope CurrentUser`
+2) open powershell and run the command: `Set-ExecutionPolicy RemoteSigned -Scope CurrentUser`
 3) now you can run the installation again with `\.install.bat`
 
 
