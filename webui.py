@@ -1,7 +1,7 @@
 import logging
 from pathlib import Path
 import os, time, sys, argparse, subprocess
-import requests
+import requests, winshell
 from functools import wraps
 from pyshortcuts import make_shortcut
 import threading
@@ -251,6 +251,7 @@ otherwise you can rerun the installer with the flashed device connected and it w
     test_webui()
 
     log.info('squawk squawk - all done')
+    create_shortcut()
     finish()
     sys.exit(0)
 
@@ -322,18 +323,49 @@ def setup_node_path():
     os.environ['PATH'] = f"{nodejs_path}{os.pathsep}{nodejs_path / 'node_modules' / 'npm' / 'bin'}{os.pathsep}{os.environ['PATH']}"
     os.environ['PATH'] = f"{Path(os.getcwd()) / 'node_modules' / '.bin'}{os.pathsep}{os.environ['PATH']}"
 
-def create_shortcut(target='./'):
-    python_path = os.path.abspath("../../python/python.exe")
-    script_path = os.path.abspath("../webui.py")
 
-    command = f"{python_path} {script_path} --run"
+def create_shortcut():
+    def get_user_input():
+        while True:
+            user_input = input("Do you want to continue? (y/yes/n/no): ").strip().lower()
+            if user_input in ['y', 'yes']:
+                return True
+            elif user_input in ['n', 'no']:
+                print("Exiting the program.")
+                exit()
+            else:
+                log.error("invalid input. please enter y/yes or n/no.")
+    
+    log.info('do you want to create a desktop shortcut to run the webui? (y/n):')
+    if get_user_input():
+        log.info('creating shortcut...')
+    else:
+        pass
 
-    shortcut = make_shortcut(command, name='FSR WebUI', terminal=True)
-
-    desktop = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop')
-    shortcut.save(desktop)
-
-    print(f'shortcut created on the desktop: {os.path.join(desktop, "FSR WebUI.lnk")}')
+    # define all the paths needed for the shortcut
+    os.chdir(Path(__file__).parent.resolve())
+    desktop = Path(winshell.desktop())
+    pwd = Path.cwd()
+    print('pwd: %s' % pwd)
+    python_fp = pwd / 'python' / 'python.exe'
+    link_filepath = str(desktop / "fsr webui.lnk")
+    icon = str(pwd / 'dependencies' / "icon.ico")
+    win32_cmd = os.path.join(os.environ["SYSTEMROOT"], "System32", "cmd.exe")
+    
+    # Build up all the arguments to cmd.exe
+    arg_str = f"\K {str(python_fp)} {str(pwd / 'webui.py')} --run"
+    
+    # create the shortcut on the desktop using ''arg_str''
+    try:
+        with winshell.shortcut(link_filepath) as link:
+            link.path = win32_cmd
+            link.description = "Run the teejusb fsr webui"
+            link.arguments = arg_str
+            link.icon_location = (icon, 0)
+            link.working_directory = str(pwd)
+            log.info('shortcut created!')
+    except Exception as e:
+        log.error('failed create shortcut!\n%s' % e)
 
 if __name__ == "__main__":
     main()

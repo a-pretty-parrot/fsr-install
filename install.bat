@@ -66,7 +66,7 @@ REM Unzip files
 echo Installing Python...
 powershell -command "Expand-Archive -Path \"%PYTHON_FILE%\" -DestinationPath \"python\" -Force"
 echo Installing NodeJS...
-powershell -command "Expand-Archive -Path \"%NODEJS_FILE%\" -DestinationPath \"nodejs\" -Force"
+REM powershell -command "Expand-Archive -Path \"%NODEJS_FILE%\" -DestinationPath \"nodejs\" -Force"
 
 REM Install pip
 echo import site >> python\python312._pth
@@ -74,7 +74,7 @@ python\python.exe dependencies\get-pip.py --no-warn-script-location
 
 REM Install python depdendencies
 python\Scripts\pip.exe install --no-warn-script-location -r fsr\webui\server\requirements.txt
-python\Scripts\pip.exe install --no-warn-script-location requests psutil pyserial pyshortcuts
+python\Scripts\pip.exe install --no-warn-script-location requests psutil pyserial pyshortcuts winshell
 
 REM Execute installer
 @echo off
