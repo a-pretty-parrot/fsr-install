@@ -69,6 +69,24 @@ No conda env active, defaulting to base
 2024-07-06 06:24:53,120 INFO install: squawk squawk - all done
 ```
 
+### Troubleshooting
+If you get a similar error to this during installation:
+```
+Installing NodeJS...
+. : File C:\Users\squawkers\Documents\WindowsPowerShell\profile.ps1 cannot be loaded because running scripts is
+disabled on this system. For more information, see about_Execution_Policies at
+https:/go.microsoft.com/fwlink/?LinkID=135170.
+At line:1 char:3
++ . 'C:\Users\mkatsuragi\Documents\WindowsPowerShell\profile.ps1'
++   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : SecurityError: (:) [], PSSecurityException
+    + FullyQualifiedErrorId : UnauthorizedAccess
+```
+1) Press `CTRL+C` a few times to stop the installation.
+2) enter this command into your terminal where you are running the installation: `Set-ExecutionPolicy RemoteSigned -Scope CurrentUser`
+3) now you can run the installation again with `\.install.bat`
+
+
 ### To Run
 To run the webui after installation, a shortcut will be placed in the installation directory.
 Optionally you can run it from the installation directory (windows) with `python\python.exe webui.py --run`
