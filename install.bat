@@ -66,7 +66,7 @@ REM Unzip files
 echo Installing Python...
 powershell -command "Expand-Archive -Path \"%PYTHON_FILE%\" -DestinationPath \"python\" -Force"
 echo Installing NodeJS...
-REM powershell -command "Expand-Archive -Path \"%NODEJS_FILE%\" -DestinationPath \"nodejs\" -Force"
+powershell -command "Expand-Archive -Path \"%NODEJS_FILE%\" -DestinationPath \"nodejs\" -Force"
 
 REM Install pip
 echo import site >> python\python312._pth
