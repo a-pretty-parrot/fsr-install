@@ -74,7 +74,7 @@ python\python.exe dependencies\get-pip.py --no-warn-script-location
 
 REM Install python depdendencies
 python\Scripts\pip.exe install --no-warn-script-location -r fsr\webui\server\requirements.txt
-python\Scripts\pip.exe install --no-warn-script-location requests psutil pyserial pyshortcuts winshell
+python\Scripts\pip.exe install --no-warn-script-location requests psutil pyserial
 
 REM Execute installer
 @echo off
