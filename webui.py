@@ -1,9 +1,8 @@
 import logging
 from pathlib import Path
 import os, time, sys, argparse, subprocess
-import requests, winshell
+import requests
 from functools import wraps
-from pyshortcuts import make_shortcut
 import threading
 import signal
 import psutil
