@@ -342,30 +342,28 @@ def create_shortcut():
     else:
         pass
 
-    # define all the paths needed for the shortcut
-    os.chdir(Path(__file__).parent.resolve())
-    desktop = Path(winshell.desktop())
-    pwd = Path.cwd()
-    print('pwd: %s' % pwd)
-    python_fp = pwd / 'python' / 'python.exe'
-    link_filepath = str(desktop / "fsr webui.lnk")
-    icon = str(pwd / 'dependencies' / "icon.ico")
-    win32_cmd = os.path.join(os.environ["SYSTEMROOT"], "System32", "cmd.exe")
-    
-    # Build up all the arguments to cmd.exe
-    arg_str = f"\K {str(python_fp)} {str(pwd / 'webui.py')} --run"
-    
-    # create the shortcut on the desktop using ''arg_str''
-    try:
-        with winshell.shortcut(link_filepath) as link:
-            link.path = win32_cmd
-            link.description = "Run the teejusb fsr webui"
-            link.arguments = arg_str
-            link.icon_location = (icon, 0)
-            link.working_directory = str(pwd)
-            log.info('shortcut created!')
-    except Exception as e:
-        log.error('failed create shortcut!\n%s' % e)
+# define all the paths needed for the .bat file
+os.chdir(Path(__file__).parent.resolve())
+desktop = Path(os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop'))
+pwd = Path.cwd()
+python_fp = pwd / 'python' / 'python.exe'
+batch_filepath = str(desktop / "fsr_webui.bat")
+
+# build up the command to run the Python script
+command = f'"{python_fp}" "{pwd / "webui.py"}" --run'
+
+# create the .bat file on the desktop
+try:
+    with open(batch_filepath, 'w') as batch_file:
+        batch_file.write(f'@echo off\n')
+        batch_file.write(f'cd /d "{pwd}"\n')
+        batch_file.write(command + '\n')
+        batch_file.write('pause\n')
+    print('Batch file created!')
+    return True
+except Exception as e:
+    print(f'Failed to create batch file!\n{e}')
+    return False
 
 if __name__ == "__main__":
     main()
