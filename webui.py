@@ -341,29 +341,28 @@ def create_shortcut():
     else:
         pass
 
-# define all the paths needed for the .bat file
-os.chdir(Path(__file__).parent.resolve())
-desktop = Path(os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop'))
-pwd = Path.cwd()
-python_fp = pwd / 'python' / 'python.exe'
-batch_filepath = str(desktop / "fsr_webui.bat")
+    # define all the paths needed for the .bat file
+    os.chdir(Path(__file__).parent.resolve())
+    desktop = Path(os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop'))
+    pwd = Path.cwd()
+    python_fp = pwd / 'python' / 'python.exe'
+    batch_filepath = str(desktop / "fsr_webui.bat")
 
-# build up the command to run the Python script
-command = f'"{python_fp}" "{pwd / "webui.py"}" --run'
+    # build up the command to run the Python script
+    command = f'"{python_fp}" "{pwd / "webui.py"}" --run'
 
-# create the .bat file on the desktop
-try:
-    with open(batch_filepath, 'w') as batch_file:
-        batch_file.write(f'@echo off\n')
-        batch_file.write(f'cd /d "{pwd}"\n')
-        batch_file.write(command + '\n')
-        batch_file.write('pause\n')
-    print('Batch file created!')
-    return True
-except Exception as e:
-    print(f'Failed to create batch file!\n{e}')
-    return False
+    # create the .bat file on the desktop
+    try:
+        with open(batch_filepath, 'w') as batch_file:
+            batch_file.write(f'@echo off\n')
+            batch_file.write(f'cd /d "{pwd}"\n')
+            batch_file.write(command + '\n')
+            batch_file.write('pause\n')
+        print('Batch file created!')
+        return True
+    except Exception as e:
+        print(f'Failed to create batch file!\n{e}')
+        return False
 
 if __name__ == "__main__":
     main()
-
