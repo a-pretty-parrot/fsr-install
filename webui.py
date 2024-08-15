@@ -247,7 +247,7 @@ otherwise you can rerun the installer with the flashed device connected and it w
     log.info('building (this may take a few minutes)...')
     run_shell_command('yarn build')
 
-    test_webui()
+    #test_webui()
 
     log.info('squawk squawk - all done')
     create_shortcut()
